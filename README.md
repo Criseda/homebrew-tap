@@ -1,23 +1,25 @@
 # Criseda's Homebrew tap
 
-Homebrew packages for [NetScanner](https://github.com/Criseda/NetScanner),
-a fast LAN scanner.
+Formulae and casks for my projects.
 
 ```sh
 brew tap criseda/tap
+brew install criseda/tap/<formula>
+brew install --cask criseda/tap/<cask>
 ```
 
-| Package | Install | What it is |
-| --- | --- | --- |
-| `netscanner` | `brew install criseda/tap/netscanner` | The `ns` command-line scanner (macOS and Linux) |
+## Formulae
 
-## Updating these packages
+| Formula | What it is |
+| --- | --- |
+| `netscanner` | `ns` from [NetScanner](https://github.com/Criseda/NetScanner), a fast LAN scanner (macOS and Linux) |
 
-Packages install prebuilt files from the projects' GitHub releases.
-After a release, bump the URLs and every `sha256`:
+## Maintaining
 
-- `Formula/netscanner.rb`: the four zips of a
-  [NetScanner release](https://github.com/Criseda/NetScanner/releases).
-
+Formulae live in `Formula/`, casks in `Casks/`. Packages that install
+prebuilt files from a project's GitHub releases need their version,
+URLs and every `sha256` bumped after each release.
 `brew livecheck --tap criseda/tap` lists packages with a newer release.
-CI runs `brew style` and `brew audit` on every push.
+
+CI runs `brew style` and `brew audit` on the whole tap, and installs
+and tests every formula, on each push and pull request.

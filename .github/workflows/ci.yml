@@ -1,5 +1,5 @@
-# Lints the formulae and casks, and installs and tests the formula, on
-# every push to main and every pull request.
+# Lints and audits every formula and cask in the tap, and installs and
+# tests every formula, on each push to main and each pull request.
 name: CI
 
 on:
@@ -28,9 +28,12 @@ jobs:
         run: brew style criseda/tap
 
       - name: Audit
-        run: brew audit --formula --strict --online criseda/tap/netscanner
+        run: brew audit --strict --online --tap criseda/tap
 
-      - name: Install and test the formula
+      - name: Install and test every formula
         run: |
-          brew install criseda/tap/netscanner
-          brew test criseda/tap/netscanner
+          for file in Formula/*.rb; do
+            formula="criseda/tap/$(basename "$file" .rb)"
+            brew install "$formula"
+            brew test "$formula"
+          done
