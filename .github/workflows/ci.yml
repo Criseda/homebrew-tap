@@ -10,12 +10,17 @@ on:
   # not trigger workflows.
   workflow_dispatch:
 
-permissions: {}
+permissions:
+  contents: read
 
 jobs:
   check:
     name: check
     runs-on: macos-26
+    # Online audits call the GitHub API; unauthenticated, runners share
+    # an IP and hit its rate limit.
+    env:
+      HOMEBREW_GITHUB_API_TOKEN: ${{ github.token }}
     steps:
       - name: Check out the repo
         uses: actions/checkout@v7
