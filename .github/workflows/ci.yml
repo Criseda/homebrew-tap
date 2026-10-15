@@ -1,0 +1,36 @@
+# Lints the formulae and casks, and installs and tests the formula, on
+# every push to main and every pull request.
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions: {}
+
+jobs:
+  check:
+    name: check
+    runs-on: macos-26
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v7
+
+      # Audit the commit under test, not the published tap.
+      - name: Tap this checkout
+        run: |
+          mkdir -p "$(dirname "$(brew --repository criseda/tap)")"
+          ln -s "$GITHUB_WORKSPACE" "$(brew --repository criseda/tap)"
+          brew trust criseda/tap
+
+      - name: Style
+        run: brew style criseda/tap
+
+      - name: Audit
+        run: brew audit --formula --strict --online criseda/tap/netscanner
+
+      - name: Install and test the formula
+        run: |
+          brew install criseda/tap/netscanner
+          brew test criseda/tap/netscanner
