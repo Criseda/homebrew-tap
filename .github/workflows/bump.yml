@@ -1,0 +1,43 @@
+# Opens a pull request for every formula and cask with a newer upstream
+# release, once a day (and on demand from the Actions tab). The work is
+# in .github/scripts/bump.py. It needs "Allow GitHub Actions to create
+# and approve pull requests" on in the repository's Actions settings.
+name: Bump
+
+on:
+  schedule:
+    - cron: "17 6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+  actions: write
+
+concurrency:
+  group: bump
+
+jobs:
+  bump:
+    name: bump
+    runs-on: macos-26
+    env:
+      GH_TOKEN: ${{ github.token }}
+      HOMEBREW_GITHUB_API_TOKEN: ${{ github.token }}
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v7
+
+      - name: Tap this checkout
+        run: |
+          mkdir -p "$(dirname "$(brew --repository criseda/tap)")"
+          ln -s "$GITHUB_WORKSPACE" "$(brew --repository criseda/tap)"
+          brew trust criseda/tap
+
+      - name: Set the commit author
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Open bump pull requests
+        run: python3 .github/scripts/bump.py

@@ -24,8 +24,11 @@ brew install --cask criseda/tap/<cask>
 
 Formulae live in `Formula/`, casks in `Casks/`. Packages that install
 prebuilt files from a project's GitHub releases need their version,
-URLs and every `sha256` bumped after each release.
-`brew livecheck --tap criseda/tap` lists packages with a newer release.
+URLs and every `sha256` bumped after each release. The Bump workflow
+does that daily: it runs livecheck over the tap and opens a pull
+request per outdated package (`.github/scripts/bump.py`). Run it by
+hand from the Actions tab, or locally with
+`python3 .github/scripts/bump.py --dry-run` to list what is outdated.
 
 CI runs `brew style` and `brew audit` on the whole tap, and installs
 and tests every formula, on each push and pull request.
