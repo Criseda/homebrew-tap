@@ -14,6 +14,12 @@ brew install --cask criseda/tap/<cask>
 | --- | --- |
 | `netscanner` | `ns` from [NetScanner](https://github.com/Criseda/NetScanner), a fast LAN scanner (macOS and Linux) |
 
+## Casks
+
+| Cask | What it is |
+| --- | --- |
+| `netscanner-app` | [NetScanner for macOS](https://github.com/Criseda/NetScanner-MacOS), the native app for NetScanner (macOS 26 or later). Not notarized yet: its caveats say how to allow the first launch. |
+
 ## Maintaining
 
 Formulae live in `Formula/`, casks in `Casks/`. Packages that install
