@@ -14,23 +14,23 @@ class Netscanner < Formula
 
   on_macos do
     on_arm do
-      url "https://github.com/Criseda/NetScanner/releases/download/v1.7.0/macos-arm64.zip"
-      sha256 "b7209515de3bf364fb6b6d0b76ea17ddee21440e33ba0a537bb6b7b107d8e744"
+      url "https://github.com/Criseda/NetScanner/releases/download/v1.8.0/macos-arm64.zip"
+      sha256 "c777c766801d16398730257c121c1ef8c11349b7280803d0a1eac2bc31ffbc20"
     end
     on_intel do
-      url "https://github.com/Criseda/NetScanner/releases/download/v1.7.0/macos-x86_64.zip"
-      sha256 "7b05effed2f091a50b6c0592b7589af6a9816ec9673242dc49bc0fcc9d5f27f6"
+      url "https://github.com/Criseda/NetScanner/releases/download/v1.8.0/macos-x86_64.zip"
+      sha256 "21fd5a8878ea2389304e8abe269c25ccbbe7606006327b145cc7ccd4dc59b492"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/Criseda/NetScanner/releases/download/v1.7.0/linux-arm64.zip"
-      sha256 "450a4942f43d26a7cd6c94775652e3526c994a1b877221f6627e221fab2306fa"
+      url "https://github.com/Criseda/NetScanner/releases/download/v1.8.0/linux-arm64.zip"
+      sha256 "9ac2e2af856c7463b369010c8165f7d969d87cc0b4913652fe8b0147ca5df888"
     end
     on_intel do
-      url "https://github.com/Criseda/NetScanner/releases/download/v1.7.0/linux-x86_64.zip"
-      sha256 "0e98a830cdc040b2b0e60c7d615901178e9386357063c01b6811b5c6cb57ea1b"
+      url "https://github.com/Criseda/NetScanner/releases/download/v1.8.0/linux-x86_64.zip"
+      sha256 "4e943b8ae6a96bd4e8238967d4d66bd541dd6fdade8eea09ef257ae316a2bb83"
     end
   end
 
